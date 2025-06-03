@@ -32,7 +32,6 @@
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      position: relative;
     }
     label {
       display: block;
@@ -49,10 +48,6 @@
       font-size: 14px;
       box-sizing: border-box;
     }
-    textarea:focus, input:focus {
-      border-color: #3498db;
-      outline: none;
-    }
     button {
       margin-top: 30px;
       padding: 12px 24px;
@@ -62,40 +57,13 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
     }
-    button:hover {
-      background-color: #2980b9;
-    }
-    .loader-overlay {
+    #loader {
       display: none;
-      position: fixed;
-      top: 0; right: 0; bottom: 0; left: 0;
-      background: rgba(255, 255, 255, 0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-    .loader {
-      display: flex;
-      gap: 10px;
-    }
-    .loader span {
-      width: 16px;
-      height: 16px;
-      background: #3498db;
-      border-radius: 50%;
-      animation: pulse 1.2s infinite ease-in-out;
-    }
-    .loader span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    .loader span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-    @keyframes pulse {
-      0%, 80%, 100% { transform: scale(0); opacity: 0.3; } 
-      40% { transform: scale(1); opacity: 1; }
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #2980b9;
     }
   </style>
 </head>
@@ -108,100 +76,41 @@
 
   <h2>טופס אפיון הדרכתי</h2>
 
-  <div class="loader-overlay" id="loader">
-    <div class="loader">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-
-  <form id="trainingForm" autocomplete="off">
-    <label>שם היחידה</label>
-    <input name="שם היחידה" type="text" required>
-
-    <label>סיווג ההדרכה</label>
-    <input name="סיווג ההדרכה" type="text">
-
-    <label>שם מומחה התוכן</label>
-    <input name="שם מומחה התוכן" type="text">
-
-    <label>נושא/תחום ההדרכה</label>
-    <textarea name="נושא/תחום ההדרכה"></textarea>
-
-    <label>האם ההדרכה עצמאית או חלק מרצף?</label>
-    <textarea name="האם ההדרכה עצמאית או חלק מרצף?"></textarea>
-
-    <label>סוג הפיתוח הנדרש</label>
-    <textarea name="סוג הפיתוח הנדרש"></textarea>
-
-    <label>איך ההדרכה הועברה עד עכשיו?</label>
-    <textarea name="איך ההדרכה הועברה עד עכשיו?"></textarea>
-
-    <label>מהו זמן העברת ההדרכה?</label>
-    <input name="מהו זמן העברת ההדרכה?" type="text">
-
-    <label>מהו הפער ההדרכתי?</label>
-    <textarea name="מהו הפער ההדרכתי?"></textarea>
-
-    <label>נקודות לשימור בהדרכה הנוכחית</label>
-    <textarea name="נקודות לשימור בהדרכה הנוכחית"></textarea>
-
-    <label>מאפייני אוכלוסיית היעד</label>
-    <textarea name="מאפייני אוכלוסיית היעד"></textarea>
-
-    <label>מהי מטרת ההדרכה?</label>
-    <textarea name="מהי מטרת ההדרכה?"></textarea>
-
-    <label>מסרים מרכזיים ודגשים</label>
-    <textarea name="מסרים מרכזיים ודגשים"></textarea>
-
-    <label>תכנים קריטיים ופחות קריטיים</label>
-    <textarea name="תכנים קריטיים ופחות קריטיים"></textarea>
-
-    <label>ספרות מקצועית שעליה מתבססים</label>
-    <textarea name="ספרות מקצועית שעליה מתבססים"></textarea>
-
-    <label>האם יש עדכונים צפויים לתוכן?</label>
-    <textarea name="האם יש עדכונים צפויים לתוכן?"></textarea>
-
-    <label>האם יש סיווג ביטחוני?</label>
-    <input name="האם יש סיווג ביטחוני?" type="text">
-
-    <label>איך תוערך האפקטיביות של ההדרכה?</label>
-    <textarea name="איך תוערך האפקטיביות של ההדרכה?"></textarea>
-
-    <label>האם יש תוצר הדרכתי דומה קיים?</label>
-    <textarea name="האם יש תוצר הדרכתי דומה קיים?"></textarea>
-
-    <label>העדפות/מגבלות עיצוב</label>
-    <textarea name="העדפות/מגבלות עיצוב"></textarea>
-
-    <label>לוחות זמנים ודד-ליין</label>
-    <textarea name="לוחות זמנים ודד-ליין"></textarea>
-
-    <label>הערות נוספות</label>
-    <textarea name="הערות נוספות"></textarea>
-
+  <form action="https://script.google.com/macros/s/AKfycbzgeoODDtxIhxnIu_z0L-fNJUBXNWWMTKof2It4fhv2M_7zzWrgMqc5cGM5GjB3s8KU3w/exec" method="POST" target="hidden_iframe" onsubmit="showLoader();">
+    <label>שם היחידה</label><input name="שם היחידה" type="text" required>
+    <label>סיווג ההדרכה</label><input name="סיווג ההדרכה" type="text">
+    <label>שם מומחה התוכן</label><input name="שם מומחה התוכן" type="text">
+    <label>נושא/תחום ההדרכה</label><textarea name="נושא/תחום ההדרכה"></textarea>
+    <label>האם ההדרכה עצמאית או חלק מרצף?</label><textarea name="האם ההדרכה עצמאית או חלק מרצף?"></textarea>
+    <label>סוג הפיתוח הנדרש</label><textarea name="סוג הפיתוח הנדרש"></textarea>
+    <label>איך ההדרכה הועברה עד עכשיו?</label><textarea name="איך ההדרכה הועברה עד עכשיו?"></textarea>
+    <label>מהו זמן העברת ההדרכה?</label><input name="מהו זמן העברת ההדרכה?" type="text">
+    <label>מהו הפער ההדרכתי?</label><textarea name="מהו הפער ההדרכתי?"></textarea>
+    <label>נקודות לשימור בהדרכה הנוכחית</label><textarea name="נקודות לשימור בהדרכה הנוכחית"></textarea>
+    <label>מאפייני אוכלוסיית היעד</label><textarea name="מאפייני אוכלוסיית היעד"></textarea>
+    <label>מהי מטרת ההדרכה?</label><textarea name="מהי מטרת ההדרכה?"></textarea>
+    <label>מסרים מרכזיים ודגשים</label><textarea name="מסרים מרכזיים ודגשים"></textarea>
+    <label>תכנים קריטיים ופחות קריטיים</label><textarea name="תכנים קריטיים ופחות קריטיים"></textarea>
+    <label>ספרות מקצועית שעליה מתבססים</label><textarea name="ספרות מקצועית שעליה מתבססים"></textarea>
+    <label>האם יש עדכונים צפויים לתוכן?</label><textarea name="האם יש עדכונים צפויים לתוכן?"></textarea>
+    <label>האם יש סיווג ביטחוני?</label><input name="האם יש סיווג ביטחוני?" type="text">
+    <label>איך תוערך האפקטיביות של ההדרכה?</label><textarea name="איך תוערך האפקטיביות של ההדרכה?"></textarea>
+    <label>האם יש תוצר הדרכתי דומה קיים?</label><textarea name="האם יש תוצר הדרכתי דומה קיים?"></textarea>
+    <label>העדפות/מגבלות עיצוב</label><textarea name="העדפות/מגבלות עיצוב"></textarea>
+    <label>לוחות זמנים ודד-ליין</label><textarea name="לוחות זמנים ודד-ליין"></textarea>
+    <label>הערות נוספות</label><textarea name="הערות נוספות"></textarea>
     <button type="submit">שלח</button>
   </form>
 
+  <div id="loader">שולח טופס...</div>
+  <iframe name="hidden_iframe" style="display:none;" onload="hideLoader(); alert('הטופס נשלח בהצלחה!');"></iframe>
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby9KkN8i5ULTgqPgjwovku4nxIdnDImrIoZHWQ1WvLRux7QGHl_PpMAjKKS1DGu3oj5UA/exec';
-    const form = document.getElementById('trainingForm');
-    const loader = document.getElementById('loader');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      loader.style.display = 'flex';
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-          loader.style.display = 'none';
-          alert("הטופס נשלח בהצלחה!");
-        })
-        .catch(error => {
-          loader.style.display = 'none';
-          alert("קרתה שגיאה בשליחה");
-        });
-    });
+    function showLoader() {
+      document.getElementById("loader").style.display = "block";
+    }
+    function hideLoader() {
+      document.getElementById("loader").style.display = "none";
+    }
   </script>
 </body>
 </html>
