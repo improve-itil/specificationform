@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>טופס אפיון הדרכה</title>
+  <link rel="icon" type="image/png" href="logo-improve-it-32.png">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f6f9;
+      direction: rtl;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+      color: #333;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 160px;
+      height: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    label {
+      display: block;
+      margin-top: 18px;
+      font-weight: 600;
+      color: #34495e;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    textarea:focus, input:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .loader-overlay {
+      display: none;
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .loader {
+      display: flex;
+      gap: 10px;
+    }
+    .loader span {
+      width: 16px;
+      height: 16px;
+      background: #3498db;
+      border-radius: 50%;
+      animation: pulse 1.2s infinite ease-in-out;
+    }
+    .loader span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    .loader span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    @keyframes pulse {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.3; } 
+      40% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+  <a href="http://www.improve-it.co.il/" target="_blank"><img src="logo-improve-it.png" alt="Improve-IT Logo" /></a>
+  </div>
+  <h2>טופס אפיון הדרכתי</h2>
+
+  <div class="loader-overlay" id="loader">
+    <div class="loader">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <form id="trainingForm">
+    <label>שם היחידה</label>
+    <input name="unitName" type="text" required />
+
+    <label>סיווג ההדרכה</label>
+    <input name="trainingCategory" type="text" />
+
+    <label>שם מומחה התוכן</label>
+    <input name="subjectMatterExpert" type="text" />
+
+    <label>נושא/תחום ההדרכה</label>
+    <textarea name="trainingTopic"></textarea>
+
+    <label>האם ההדרכה עצמאית או חלק מרצף?</label>
+    <textarea name="trainingContext"></textarea>
+
+    <label>סוג הפיתוח הנדרש</label>
+    <textarea name="developmentType"></textarea>
+
+    <label>איך ההדרכה הועברה עד עכשיו?</label>
+    <textarea name="currentDelivery"></textarea>
+
+    <label>מהו זמן העברת ההדרכה?</label>
+    <input name="trainingDuration" type="text" />
+
+    <label>מהו הפער ההדרכתי?</label>
+    <textarea name="trainingGap"></textarea>
+
+    <label>נקודות לשימור בהדרכה הנוכחית</label>
+    <textarea name="currentHighlights"></textarea>
+
+    <label>מאפייני אוכלוסיית היעד</label>
+    <textarea name="audienceCharacteristics"></textarea>
+
+    <label>מהי מטרת ההדרכה?</label>
+    <textarea name="trainingGoal"></textarea>
+
+    <label>מסרים מרכזיים ודגשים</label>
+    <textarea name="mainMessages"></textarea>
+
+    <label>תכנים קריטיים ופחות קריטיים</label>
+    <textarea name="contentImportance"></textarea>
+
+    <label>ספרות מקצועית שעליה מתבססים</label>
+    <textarea name="professionalSources"></textarea>
+
+    <label>האם יש עדכונים צפויים לתוכן?</label>
+    <textarea name="contentUpdate"></textarea>
+
+    <label>האם יש סיווג ביטחוני?</label>
+    <input name="securityClearance" type="text" />
+
+    <label>איך תוערך האפקטיביות של ההדרכה?</label>
+    <textarea name="effectivenessEvaluation"></textarea>
+
+    <label>האם יש תוצר הדרכתי דומה קיים?</label>
+    <textarea name="existingProduct"></textarea>
+
+    <label>העדפות/מגבלות עיצוב</label>
+    <textarea name="designPreferences"></textarea>
+
+    <label>לוחות זמנים ודד-ליין</label>
+    <textarea name="timeline"></textarea>
+
+    <label>הערות נוספות</label>
+    <textarea name="notes"></textarea>
+
+    <button type="submit">שלח</button>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyzeKwQ3-mavc10LWsGC9SCCgjKKytofcQHbN7WF04Swd4I2CjmudmOSZpDctccuIBhjA/exec'; // תחליף בכתובת שלך
+    const form = document.getElementById('trainingForm');
+    const loader = document.getElementById('loader');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      loader.style.display = 'flex';
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          loader.style.display = 'none';
+          alert("הטופס נשלח בהצלחה!");
+        })
+        .catch(error => {
+          loader.style.display = 'none';
+          alert("קרתה שגיאה בשליחה");
+        });
+    });
+  </script>
+</body>
+</html>
