@@ -347,9 +347,7 @@
             console.log('Sending data:', data);
             
             // שליחת הנתונים לשרת
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbymR9o1ERi1AH6lxIvc-4R3tc5lYv3KuThthVsPxUF5KvKr8HLInfdj7X8Li6t2izJHxA/exec';
-            
-            fetch(scriptUrl, {
+            fetch(this.action || window.location.href, {
                 method: 'POST',
                 body: formData
             })
